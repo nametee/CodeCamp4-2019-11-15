@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <script src="https://unpkg.com/react@16.4.0/umd/react.development.js"></script> 
+    <script src="https://unpkg.com/react-dom@16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class App extends React.Component {
+            state = { 
+                name:'john',
+                skills: []
+            }
+
+            handleChangeName = () => {
+                this.setState({ name: this.state.name === 'john' ? 'smith' : 'john' });
+            }
+        
+            handleChangeSkill = () => {
+                this.setState({
+                    skills: this.state.skills.length > 0 ? [] : [
+                        { id: 1, name: 'Java' },
+                        { id: 2, name: 'C++' },
+                        { id: 3, name: 'Swift' }
+                    ]
+                })
+            }
+        
+        render = () => {
+            return (
+            <div>
+                <button onClick={this.handleChangeName}>
+                change name: {this.state.name}
+                </button>
+                <button onClick={this.handleChangeSkill}>
+                change skills: {this.state.skills.map(s => s.name)}
+                </button>
+            </div>
+            )
+        }
+        }
+
+        ReactDOM.render(
+        <App />, 
+        document.getElementById('root')
+        )
+    </script>
+</body>
+</html>
